@@ -26,8 +26,8 @@ public class Logica implements ILogica{
     }
     
     @Override
-    public void registrarUsuario(Usuario usuario) {
-        persistencia.registrarUsuario(usuario);
+    public Usuario registrarUsuario(Usuario usuario) {
+        return persistencia.registrarUsuario(usuario);
     }
 
     @Override

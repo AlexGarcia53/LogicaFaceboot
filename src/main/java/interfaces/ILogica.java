@@ -16,7 +16,7 @@ import java.util.List;
  * @author Admin
  */
 public interface ILogica {
-    public void registrarUsuario(Usuario usuario);
+    public Usuario registrarUsuario(Usuario usuario);
     public void editarPerfilUsuario(Usuario usuario);
     public Usuario consultarUsuario(int idUsuario);
     public void registrarPublicacion(Publicacion publicacion);
