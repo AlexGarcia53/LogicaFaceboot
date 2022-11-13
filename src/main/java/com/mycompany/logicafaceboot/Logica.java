@@ -11,6 +11,8 @@ import dominio.Hashtag;
 import dominio.Mensaje;
 import dominio.Publicacion;
 import dominio.Usuario;
+import excepciones.ErrorBusquedaUsuarioException;
+import excepciones.ErrorGuardarUsuarioException;
 import interfaces.ILogica;
 import java.util.List;
 
@@ -27,7 +29,11 @@ public class Logica implements ILogica{
     
     @Override
     public Usuario registrarUsuario(Usuario usuario) {
-        return persistencia.registrarUsuario(usuario);
+        try{
+            return persistencia.registrarUsuario(usuario);
+        } catch(ErrorGuardarUsuarioException e){
+            throw new ErrorGuardarUsuarioException(e.getMessage());
+        }
     }
 
     @Override
@@ -36,8 +42,12 @@ public class Logica implements ILogica{
     }
 
     @Override
-    public Usuario consultarUsuario(int idUsuario) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Usuario consultarUsuario(Usuario Usuario) {
+        try{
+            return persistencia.consultarUsuario(Usuario);
+        } catch(ErrorBusquedaUsuarioException e){
+            throw new ErrorGuardarUsuarioException(e.getMessage());
+        }
     }
 
     @Override
