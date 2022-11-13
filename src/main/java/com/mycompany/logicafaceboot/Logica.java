@@ -12,6 +12,7 @@ import dominio.Mensaje;
 import dominio.Publicacion;
 import dominio.Usuario;
 import excepciones.ErrorBusquedaUsuarioException;
+import excepciones.ErrorGuardarPublicacionException;
 import excepciones.ErrorGuardarUsuarioException;
 import interfaces.ILogica;
 import java.util.List;
@@ -46,13 +47,17 @@ public class Logica implements ILogica{
         try{
             return persistencia.consultarUsuario(Usuario);
         } catch(ErrorBusquedaUsuarioException e){
-            throw new ErrorGuardarUsuarioException(e.getMessage());
+            throw new ErrorBusquedaUsuarioException(e.getMessage());
         }
     }
 
     @Override
-    public void registrarPublicacion(Publicacion publicacion) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Publicacion registrarPublicacion(Publicacion publicacion) {
+        try{
+            return persistencia.registrarPublicacion(publicacion);
+        } catch(ErrorGuardarPublicacionException e){
+            throw new ErrorGuardarPublicacionException(e.getMessage());
+        }
     }
 
     @Override
