@@ -17,8 +17,10 @@ import java.util.List;
  */
 public interface ILogica {
     public Usuario registrarUsuario(Usuario usuario);
+    public Usuario registrarUsuarioFacebook(Usuario usuario);
     public void editarPerfilUsuario(Usuario usuario);
     public Usuario consultarUsuario(Usuario usuario);
+    public Usuario consultarUsuarioPorAToken(Usuario Usuario);
     public Publicacion registrarPublicacion(Publicacion publicacion);
     public void eliminarPublicacion(Publicacion publicacion);
     public Publicacion consultarPublicacionHashtag(Hashtag hashtag);
@@ -28,5 +30,4 @@ public interface ILogica {
     public void eliminarComentario(Comentario comentario);
     public List<Comentario> consultarComentarios(int idPublicacion);
     public void enviarNotificacion(Mensaje mensaje);
-//    public void registrarTransaccion(Transaccion transaccion);
 }
