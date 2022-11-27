@@ -12,6 +12,7 @@ import dominio.Hashtag;
 import dominio.Mensaje;
 import dominio.Publicacion;
 import dominio.Usuario;
+import excepciones.ErrorBusquedaPublicacionesException;
 import excepciones.ErrorBusquedaUsuarioException;
 import excepciones.ErrorGuardarPublicacionException;
 import excepciones.ErrorGuardarUsuarioException;
@@ -124,6 +125,15 @@ public class Logica implements ILogica{
     @Override
     public void enviarNotificacion(Mensaje mensaje) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public List<Publicacion> consultarPublicaciones() {
+        try{
+            return persistencia.consultarPublicaciones();
+        } catch(ErrorBusquedaPublicacionesException e){
+            throw new ErrorBusquedaPublicacionesException(e.getMessage());
+        }
     }
 
 
