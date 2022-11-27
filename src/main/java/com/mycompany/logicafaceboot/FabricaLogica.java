@@ -11,7 +11,7 @@ import interfaces.ILogica;
  * @author Admin
  */
 public class FabricaLogica {
-    private static ILogica logica;
+   // private static ILogica logica;
     
     public static ILogica crearLogica(){
         return new Logica();

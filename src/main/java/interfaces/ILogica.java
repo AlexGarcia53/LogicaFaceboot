@@ -29,5 +29,5 @@ public interface ILogica {
     public void registrarComentario(Comentario comentario);
     public void eliminarComentario(Comentario comentario);
     public List<Comentario> consultarComentarios(int idPublicacion);
-    public void enviarNotificacion(Mensaje mensaje);
+    public Mensaje enviarNotificacion(Mensaje mensaje);
 }

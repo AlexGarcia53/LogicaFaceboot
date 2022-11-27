@@ -18,6 +18,8 @@ import excepciones.ErrorGuardarUsuarioException;
 import interfaces.ILogica;
 import interfaces.ITransacciones;
 import java.util.List;
+import notificacionesDecorator.FNotificaciones;
+import notificacionesDecorator.INotificaciones;
 
 /**
  *
@@ -26,30 +28,35 @@ import java.util.List;
 public class Logica implements ILogica{
     private IDatosPersistencia persistencia;
     private ITransacciones transacciones;
+    private INotificaciones notificar;
     
     public Logica(){
         persistencia= FabricaDatosPersistencia.crearFachadaDatos();
         transacciones= FabricaTransacciones.crearFachadaTransacciones();
+       notificar= new FNotificaciones();
     }
     
     @Override
     public Usuario registrarUsuario(Usuario usuario) {
         try{
             transacciones.logRegistroUsuario(usuario);
-            return persistencia.registrarUsuario(usuario);
+           return persistencia.registrarUsuario(usuario);
         } catch(ErrorGuardarUsuarioException e){
             throw new ErrorGuardarUsuarioException(e.getMessage());
         }
+       
     }
     
    @Override
     public Usuario registrarUsuarioFacebook(Usuario usuario) {
         try{
             transacciones.logRegistroUsuario(usuario);
+            
             return persistencia.registrarUsuarioFacebook(usuario);
         } catch(ErrorGuardarUsuarioException e){
             throw new ErrorGuardarUsuarioException(e.getMessage());
         }
+       
     }
 
     @Override
@@ -69,10 +76,11 @@ public class Logica implements ILogica{
     @Override
     public Usuario consultarUsuarioPorAToken(Usuario Usuario) {
         try{
-            return persistencia.consultarUsuarioPorAToken(Usuario);
+             return persistencia.consultarUsuarioPorAToken(Usuario);
         } catch(ErrorBusquedaUsuarioException e){
             throw new ErrorBusquedaUsuarioException(e.getMessage());
         }
+        
     }
     
     
@@ -122,8 +130,12 @@ public class Logica implements ILogica{
     }
 
     @Override
-    public void enviarNotificacion(Mensaje mensaje) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Mensaje enviarNotificacion(Mensaje mensaje) {
+        
+      
+       notificar.enviarNotificacion(mensaje);
+       
+       return mensaje;
     }
 
 
