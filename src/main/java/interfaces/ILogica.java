@@ -22,12 +22,14 @@ public interface ILogica {
     public Usuario consultarUsuario(Usuario usuario);
     public Usuario consultarUsuarioPorAToken(Usuario Usuario);
     public Publicacion registrarPublicacion(Publicacion publicacion);
-    public void eliminarPublicacion(Publicacion publicacion);
+    public Publicacion editarPublicacion(Publicacion publicacion);
+    public Publicacion eliminarPublicacion(Publicacion publicacion);
     public Publicacion consultarPublicacionHashtag(Hashtag hashtag);
     public void registrarHashtag(Hashtag hashtag);
     public Hashtag consultarHashtag(int idHashtag);
-    public void registrarComentario(Comentario comentario);
-    public void eliminarComentario(Comentario comentario);
+    public Comentario registrarComentario(Comentario comentario);
+    public Comentario editarComentario(Comentario comentario);
+    public Comentario eliminarComentario(Comentario comentario);
     public List<Comentario> consultarComentarios(int idPublicacion);
     public List<Publicacion> consultarPublicaciones();
     public void enviarNotificacion(Mensaje mensaje);

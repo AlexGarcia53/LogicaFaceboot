@@ -14,6 +14,9 @@ import dominio.Publicacion;
 import dominio.Usuario;
 import excepciones.ErrorBusquedaPublicacionesException;
 import excepciones.ErrorBusquedaUsuarioException;
+import excepciones.ErrorEditarComentarioException;
+import excepciones.ErrorEliminarPublicacionException;
+import excepciones.ErrorGuardarComentarioException;
 import excepciones.ErrorGuardarPublicacionException;
 import excepciones.ErrorGuardarUsuarioException;
 import interfaces.ILogica;
@@ -88,8 +91,12 @@ public class Logica implements ILogica{
     }
 
     @Override
-    public void eliminarPublicacion(Publicacion publicacion) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Publicacion eliminarPublicacion(Publicacion publicacion) {
+        try{
+            return persistencia.eliminarPublicacion(publicacion);
+        } catch(ErrorEliminarPublicacionException e){
+            throw new ErrorEliminarPublicacionException(e.getMessage());
+        }
     }
 
     @Override
@@ -108,12 +115,25 @@ public class Logica implements ILogica{
     }
 
     @Override
-    public void registrarComentario(Comentario comentario) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Comentario registrarComentario(Comentario comentario) {
+        try{
+            return persistencia.registrarComentario(comentario);
+        } catch(ErrorGuardarComentarioException e){
+            throw new ErrorGuardarComentarioException(e.getMessage());
+        }
+    }
+    
+    @Override
+    public Comentario editarComentario(Comentario comentario) {
+        try{
+            return persistencia.editarComentario(comentario);
+        }catch (ErrorEditarComentarioException e){
+            throw new ErrorEditarComentarioException(e.getMessage());
+        }
     }
 
     @Override
-    public void eliminarComentario(Comentario comentario) {
+    public Comentario eliminarComentario(Comentario comentario) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -133,6 +153,15 @@ public class Logica implements ILogica{
             return persistencia.consultarPublicaciones();
         } catch(ErrorBusquedaPublicacionesException e){
             throw new ErrorBusquedaPublicacionesException(e.getMessage());
+        }
+    }
+
+    @Override
+    public Publicacion editarPublicacion(Publicacion publicacion) {
+        try{
+            return persistencia.editarPublicacion(publicacion);
+        }catch(ErrorGuardarPublicacionException e){
+            throw new ErrorGuardarPublicacionException(e.getMessage());
         }
     }
 
