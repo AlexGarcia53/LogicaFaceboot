@@ -15,6 +15,8 @@ import dominio.Usuario;
 import excepciones.ErrorBusquedaPublicacionesException;
 import excepciones.ErrorBusquedaUsuarioException;
 import excepciones.ErrorEditarComentarioException;
+import excepciones.ErrorEditarUsuarioException;
+import excepciones.ErrorEliminarComentarioException;
 import excepciones.ErrorEliminarPublicacionException;
 import excepciones.ErrorGuardarComentarioException;
 import excepciones.ErrorGuardarPublicacionException;
@@ -57,8 +59,12 @@ public class Logica implements ILogica{
     }
 
     @Override
-    public void editarPerfilUsuario(Usuario usuario) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Usuario editarPerfilUsuario(Usuario usuario) {
+        try{
+            return persistencia.editarPerfilUsuario(usuario);
+        } catch (ErrorGuardarUsuarioException e){
+            throw new ErrorEditarUsuarioException(e.getMessage());
+        }
     }
 
     @Override
@@ -134,7 +140,11 @@ public class Logica implements ILogica{
 
     @Override
     public Comentario eliminarComentario(Comentario comentario) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try{
+            return persistencia.eliminarComentario(comentario);
+        } catch (ErrorEliminarComentarioException e){
+            throw new ErrorEliminarComentarioException(e.getMessage());
+        }
     }
 
     @Override

@@ -18,7 +18,7 @@ import java.util.List;
 public interface ILogica {
     public Usuario registrarUsuario(Usuario usuario);
     public Usuario registrarUsuarioFacebook(Usuario usuario);
-    public void editarPerfilUsuario(Usuario usuario);
+    public Usuario editarPerfilUsuario(Usuario usuario);
     public Usuario consultarUsuario(Usuario usuario);
     public Usuario consultarUsuarioPorAToken(Usuario Usuario);
     public Publicacion registrarPublicacion(Publicacion publicacion);
