@@ -19,6 +19,7 @@ import excepciones.ErrorEditarUsuarioException;
 import excepciones.ErrorEliminarComentarioException;
 import excepciones.ErrorEliminarPublicacionException;
 import excepciones.ErrorGuardarComentarioException;
+import excepciones.ErrorGuardarHashtagException;
 import excepciones.ErrorGuardarPublicacionException;
 import excepciones.ErrorGuardarUsuarioException;
 import interfaces.ILogica;
@@ -111,8 +112,12 @@ public class Logica implements ILogica{
     }
 
     @Override
-    public void registrarHashtag(Hashtag hashtag) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Hashtag registrarHashtag(Hashtag hashtag) {
+        try{
+            return persistencia.registrarHashtag(hashtag);
+        } catch(ErrorGuardarHashtagException e){
+            throw new ErrorGuardarHashtagException(e.getMessage());
+        }
     }
 
     @Override
