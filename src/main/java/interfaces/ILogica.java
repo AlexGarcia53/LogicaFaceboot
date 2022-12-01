@@ -20,6 +20,7 @@ public interface ILogica {
     public Usuario registrarUsuarioFacebook(Usuario usuario);
     public Usuario editarPerfilUsuario(Usuario usuario);
     public Usuario consultarUsuario(Usuario usuario);
+    public Usuario consultarUsuarioNombre(Usuario usuario);
     public Usuario consultarUsuarioPorAToken(Usuario Usuario);
     public Publicacion registrarPublicacion(Publicacion publicacion);
     public Publicacion editarPublicacion(Publicacion publicacion);
@@ -32,5 +33,5 @@ public interface ILogica {
     public Comentario eliminarComentario(Comentario comentario);
     public List<Comentario> consultarComentarios(int idPublicacion);
     public List<Publicacion> consultarPublicaciones();
-    public void enviarNotificacion(Mensaje mensaje);
+    public Mensaje enviarNotificacion(Mensaje mensaje);
 }

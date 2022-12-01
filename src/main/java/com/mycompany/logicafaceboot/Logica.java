@@ -18,6 +18,7 @@ import excepciones.ErrorEditarComentarioException;
 import excepciones.ErrorEditarUsuarioException;
 import excepciones.ErrorEliminarComentarioException;
 import excepciones.ErrorEliminarPublicacionException;
+import excepciones.ErrorEnviarMensajeException;
 import excepciones.ErrorGuardarComentarioException;
 import excepciones.ErrorGuardarHashtagException;
 import excepciones.ErrorGuardarPublicacionException;
@@ -158,8 +159,12 @@ public class Logica implements ILogica{
     }
 
     @Override
-    public void enviarNotificacion(Mensaje mensaje) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Mensaje enviarNotificacion(Mensaje mensaje) {
+        try{
+            return persistencia.enviarMensaje(mensaje);
+        } catch(ErrorEnviarMensajeException e){
+            throw new ErrorEnviarMensajeException(e.getMessage());
+        }
     }
 
     @Override
@@ -177,6 +182,15 @@ public class Logica implements ILogica{
             return persistencia.editarPublicacion(publicacion);
         }catch(ErrorGuardarPublicacionException e){
             throw new ErrorGuardarPublicacionException(e.getMessage());
+        }
+    }
+
+    @Override
+    public Usuario consultarUsuarioNombre(Usuario usuario) {
+        try{
+            return persistencia.consultarUsuarioNombre(usuario);
+        } catch(ErrorBusquedaUsuarioException e){
+            throw new ErrorBusquedaUsuarioException(e.getMessage());
         }
     }
 
