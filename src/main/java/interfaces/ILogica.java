@@ -26,6 +26,7 @@ public interface ILogica {
     public Publicacion editarPublicacion(Publicacion publicacion);
     public Publicacion eliminarPublicacion(Publicacion publicacion);
     public Publicacion consultarPublicacionHashtag(Hashtag hashtag);
+    public Publicacion consultarPublicacion(Publicacion publicacion);
     public Hashtag registrarHashtag(Hashtag hashtag);
     public Hashtag consultarHashtag(int idHashtag);
     public Comentario registrarComentario(Comentario comentario);
@@ -33,5 +34,6 @@ public interface ILogica {
     public Comentario eliminarComentario(Comentario comentario);
     public List<Comentario> consultarComentarios(int idPublicacion);
     public List<Publicacion> consultarPublicaciones();
+    public List<Hashtag> consultarHashtagNombre(String hashtag);
     public Mensaje enviarNotificacion(Mensaje mensaje);
 }

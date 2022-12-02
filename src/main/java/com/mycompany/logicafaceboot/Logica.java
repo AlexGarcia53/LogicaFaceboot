@@ -14,6 +14,8 @@ import dominio.Publicacion;
 import dominio.Usuario;
 import excepciones.ErrorBusquedaPublicacionesException;
 import excepciones.ErrorBusquedaUsuarioException;
+import excepciones.ErrorConsultarHashtagException;
+import excepciones.ErrorConsultarPublicacionException;
 import excepciones.ErrorEditarComentarioException;
 import excepciones.ErrorEditarUsuarioException;
 import excepciones.ErrorEliminarComentarioException;
@@ -191,6 +193,24 @@ public class Logica implements ILogica{
             return persistencia.consultarUsuarioNombre(usuario);
         } catch(ErrorBusquedaUsuarioException e){
             throw new ErrorBusquedaUsuarioException(e.getMessage());
+        }
+    }
+
+    @Override
+    public List<Hashtag> consultarHashtagNombre(String hashtag) {
+        try{
+            return persistencia.consultarHashtagNombre(hashtag);
+        }catch(ErrorConsultarHashtagException e){
+            throw new ErrorConsultarHashtagException(e.getMessage());
+        }
+    }
+
+    @Override
+    public Publicacion consultarPublicacion(Publicacion publicacion) {
+        try{
+            return persistencia.consultarPublicacion(publicacion);
+        } catch(ErrorConsultarPublicacionException e){
+            throw new ErrorConsultarPublicacionException(e.getMessage());
         }
     }
 
