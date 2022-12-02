@@ -58,9 +58,12 @@ public class Logica implements ILogica{
     @Override
     public Usuario registrarUsuario(Usuario usuario) {
         try{
+            
+            Usuario usuarioRegistrar = persistencia.registrarUsuario(usuario);
             transacciones.logRegistroUsuario(usuario);
-            return persistencia.registrarUsuario(usuario);
+            return usuarioRegistrar;
         } catch(ErrorGuardarUsuarioException e){
+            transacciones.logErrorRegistroUsuario(usuario);
             throw new ErrorGuardarUsuarioException(e.getMessage());
         }
     }
@@ -72,9 +75,11 @@ public class Logica implements ILogica{
    @Override
     public Usuario registrarUsuarioFacebook(Usuario usuario) {
         try{
+            Usuario usuarioRegistrar = persistencia.registrarUsuarioFacebook(usuario);
             transacciones.logRegistroUsuario(usuario);
-            return persistencia.registrarUsuarioFacebook(usuario);
+            return usuarioRegistrar;
         } catch(ErrorGuardarUsuarioException e){
+            transacciones.logErrorRegistroUsuario(usuario);
             throw new ErrorGuardarUsuarioException(e.getMessage());
         }
     }
@@ -99,8 +104,11 @@ public class Logica implements ILogica{
     @Override
     public Usuario consultarUsuario(Usuario Usuario) {
         try{
-            return persistencia.consultarUsuario(Usuario);
+            Usuario usuarioConsultar = persistencia.consultarUsuario(Usuario);
+            transacciones.logErrorInicioSesion(Usuario);
+            return usuarioConsultar;
         } catch(ErrorBusquedaUsuarioException e){
+            transacciones.logErrorInicioSesion(Usuario);
             throw new ErrorBusquedaUsuarioException(e.getMessage());
         }
     }
@@ -126,8 +134,11 @@ public class Logica implements ILogica{
     @Override
     public Publicacion registrarPublicacion(Publicacion publicacion) {
         try{
-            return persistencia.registrarPublicacion(publicacion);
+            Publicacion publicacionRegistrar = persistencia.registrarPublicacion(publicacion);
+            transacciones.logErrorRegistroPublicacion(publicacion);
+            return publicacionRegistrar;
         } catch(ErrorGuardarPublicacionException e){
+            transacciones.logErrorRegistroPublicacion(publicacion);
             throw new ErrorGuardarPublicacionException(e.getMessage());
         }
     }
@@ -165,8 +176,11 @@ public class Logica implements ILogica{
     @Override
     public Comentario registrarComentario(Comentario comentario) {
         try{
-            return persistencia.registrarComentario(comentario);
+            Comentario comentarioRegistrar = persistencia.registrarComentario(comentario);
+            transacciones.logRegistroComentario(comentario);
+            return comentarioRegistrar;
         } catch(ErrorGuardarComentarioException e){
+            transacciones.logErrorRegistroComentario(comentario);
             throw new ErrorGuardarComentarioException(e.getMessage());
         }
     }
@@ -257,8 +271,11 @@ public class Logica implements ILogica{
     @Override
     public List<Hashtag> consultarHashtagNombre(String hashtag) {
         try{
-            return persistencia.consultarHashtagNombre(hashtag);
+            List<Hashtag> hashtagBusqueda = persistencia.consultarHashtagNombre(hashtag);
+            transacciones.logBusquedaEtiquieta(new Hashtag(hashtag));
+            return hashtagBusqueda;
         }catch(ErrorConsultarHashtagException e){
+            transacciones.logErrorBusquedaEtiquieta(new Hashtag(hashtag));
             throw new ErrorConsultarHashtagException(e.getMessage());
         }
     }
