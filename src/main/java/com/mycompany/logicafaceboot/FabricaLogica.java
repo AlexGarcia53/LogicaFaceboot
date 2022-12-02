@@ -7,12 +7,14 @@ package com.mycompany.logicafaceboot;
 import interfaces.ILogica;
 
 /**
- *
- * @author Admin
+ * Clase que representa una fabrica que construye objetos del tipo ILogica.
+ * @author Equipo Broker.
  */
 public class FabricaLogica {
-    private static ILogica logica;
-    
+    /**
+     * Método utilizado para obtener una nueva instancia del tipo ILogica.
+     * @return Instancia del tipo ILogica.
+     */
     public static ILogica crearLogica(){
         return new Logica();
     }

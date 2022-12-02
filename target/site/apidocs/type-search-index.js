@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"com.mycompany.logicafaceboot","l":"FabricaLogica"},{"p":"interfaces","l":"ILogica"},{"p":"com.mycompany.logicafaceboot","l":"Logica"}];updateSearchResults();
