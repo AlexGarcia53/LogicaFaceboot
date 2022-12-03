@@ -6,7 +6,7 @@ package com.mycompany.logicafaceboot;
 
 import com.mycompany.faceboot_transacciones.FabricaTransacciones;
 import datosPersistencia.FabricaDatosPersistencia;
-import datosPersistencia.IDatosPersistencia;
+import interfaces.IDatosPersistencia;
 import dominio.Comentario;
 import dominio.Hashtag;
 import dominio.Mensaje;
